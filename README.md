@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Site de Lucas Fernando Santos Sousa
 
-## Getting Started
+Site profissional em Next.js, com páginas de início, serviços, sobre, contato, privacidade e termos.
 
-First, run the development server:
+## Desenvolvimento local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Configure as variáveis privadas em `.env.local`, que está ignorado pelo Git. Nunca copie chaves para arquivos públicos nem use `NEXT_PUBLIC_` para credenciais.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Validação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+node scripts/check-launch.mjs
+node scripts/check-contact-forms.mjs
+npm run build
+```
 
-## Learn More
+Os testes verificam os formulários e simulam o provedor de e-mail; não enviam mensagens reais.
 
-To learn more about Next.js, take a look at the following resources:
+## Contato
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O formulário comum recebe dúvidas e pedidos de consultoria, com sugestões editáveis conforme o serviço escolhido. A Solicitação de Recrutamento (`/contato?servico=2#formulario-contato`) usa um formulário empresarial curto; o alinhamento detalhado ocorre depois da conversa comercial. O Diagnóstico Inicial de Carreira continua no Google Forms externo.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Em produção, ambos os formulários preparam mensagens para WhatsApp ou para o aplicativo de e-mail. O visitante precisa revisar e confirmar o envio no aplicativo correspondente.
 
-## Deploy on Vercel
+O envio direto está deliberadamente desabilitado no lançamento: credenciais Resend e remetente autorizado não habilitam essa opção em produção. Uma ativação futura exige decisão explícita, proteção contra abuso e alteração da configuração e da trava no código. Consulte [CONTACT-SETUP.md](CONTACT-SETUP.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Busca e compartilhamento
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `SITE_URL`: origem HTTPS pública definitiva, sem caminho. Pode ser um endereço fornecido pela hospedagem; não exige domínio comprado.
+- `SITE_INDEXABLE`: manter ausente ou `false` até a validação e aprovação pública; habilitar somente na produção definitiva. Locais e previews permanecem sem indexação.
+- Ambientes com `VERCEL_ENV=preview` permanecem sem indexação.
+- Hospedagem e `SITE_URL` continuam pendentes. Sem essa URL, não são anunciados canonical nem imagens sociais absolutas; a rota da imagem continua disponível, robots bloqueia indexação e o sitemap fica vazio. Reconstrua o projeto após a configuração futura.
+- A imagem `/opengraph-image` e o ícone `/icon.svg` são gerados no próprio projeto.
+
+## Antes da publicação
+
+Consulte [PREPARACAO-LANCAMENTO.md](PREPARACAO-LANCAMENTO.md). Esta revisão não publica nem envia alterações ao GitHub.

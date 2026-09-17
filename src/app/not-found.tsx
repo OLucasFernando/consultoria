@@ -1,8 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Página não encontrada | Lucas Fernando",
+  robots: { index: false, follow: false },
+  alternates: { canonical: null },
+  openGraph: { images: [] },
+  twitter: { images: [] },
+};
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-6">
+    <main id="conteudo" tabIndex={-1} className="flex min-h-screen items-center justify-center px-6">
       <div className="text-center">
         <h1 className="text-6xl font-bold text-blue-600">
           404

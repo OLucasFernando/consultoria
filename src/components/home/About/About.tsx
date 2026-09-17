@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function About() {
@@ -22,6 +23,7 @@ export function About() {
             organizacionais para apoiar decisões mais conscientes.
           </p>
 
+          <div className="mt-8"><Button href="/sobre" variant="outline">Conheça minha trajetória</Button></div>
         </div>
 
       </Container>

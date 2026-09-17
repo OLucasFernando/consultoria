@@ -1,9 +1,13 @@
-import { ButtonHTMLAttributes } from "react";
+import Link from "next/link";
+import type { ButtonHTMLAttributes, ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary";
-}
+type ButtonProps = {
+  variant?: "primary" | "secondary" | "outline";
+} & (
+  | (ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })
+  | ComponentPropsWithoutRef<typeof Link>
+);
 
 export function Button({
   children,
@@ -14,20 +18,28 @@ export function Button({
   const variants = {
     primary:
       "bg-[#2667B8] text-white hover:bg-[#0F3D91] shadow-lg shadow-blue-500/20",
-
     secondary:
       "bg-white text-slate-900 border border-slate-300 hover:bg-slate-100",
+    outline:
+      "bg-transparent text-[#2667B8] border border-[#2667B8] hover:bg-blue-50",
   };
 
+  const classes = cn(
+    "inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95",
+    variants[variant],
+    className
+  );
+
+  if (props.href !== undefined) {
+    return (
+      <Link {...props} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <button
-      className={cn(
-        "inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95",
-        variants[variant],
-        className
-      )}
-      {...props}
-    >
+    <button {...props} className={classes}>
       {children}
     </button>
   );

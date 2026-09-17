@@ -24,14 +24,14 @@ export function CTA() {
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
-              href="#contato"
+              href="/contato"
               className="bg-white text-blue-600 hover:bg-slate-100"
             >
               Solicitar consultoria
             </Button>
 
             <Button
-              href="#servicos"
+              href="/servicos"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-blue-600"
             >

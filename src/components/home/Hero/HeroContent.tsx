@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/Button";
 
 export function HeroContent() {
   return (
-    <div className="fade-up">
+    <div className="min-w-0 fade-up">
 
       <Badge>
         Psicólogo Organizacional
       </Badge>
 
-      <h1 className="mt-8 text-5xl font-bold leading-tight md:text-7xl">
+      <h1 className="mt-8 text-4xl sm:text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
         Desenvolvendo
         <span className="text-gradient"> pessoas </span>
 
@@ -25,11 +25,11 @@ export function HeroContent() {
 
       <div className="mt-10 flex flex-wrap gap-4">
 
-        <Button>
+        <Button href="/contato">
           Solicitar Consultoria
         </Button>
 
-        <Button variant="outline">
+        <Button href="/servicos" variant="outline">
           Conhecer Serviços
         </Button>
 

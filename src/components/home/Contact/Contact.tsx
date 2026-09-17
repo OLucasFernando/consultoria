@@ -1,8 +1,14 @@
+import { emailEnabled } from "@/lib/email-config";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { RecruitmentForm } from "./RecruitmentForm";
 import { ContactForm } from "./ContactForm";
 
-export function Contact() {
+export function Contact({ initialSubject = "", initialMessage = "", recruitment = false }: {
+  recruitment?: boolean;
+  initialSubject?: string;
+  initialMessage?: string;
+}) {
   return (
     <section
       id="contato"
@@ -13,8 +19,8 @@ export function Contact() {
           <div>
             <SectionTitle
               eyebrow="Contato"
-              title="Vamos conversar sobre seu projeto?"
-              description="Entre em contato para tirar dúvidas, solicitar uma consultoria ou conhecer melhor os serviços oferecidos."
+              title={recruitment ? "Vamos entender sua contratação?" : "Vamos conversar sobre seu projeto?"}
+              description={recruitment ? "Preencha os dados iniciais da vaga e escolha como continuar a conversa comercial." : "Entre em contato para tirar dúvidas, solicitar uma consultoria ou conhecer melhor os serviços oferecidos."}
             />
 
             <div className="mt-10 space-y-6 text-slate-700">
@@ -24,7 +30,9 @@ export function Contact() {
                 </h3>
 
                 <p className="mt-2">
-                  lucasfernando.recruiter@gmail.com
+                  <a className="break-all underline underline-offset-4 hover:opacity-80 focus-visible:outline-2" href="mailto:lucasfernando.recruiter@gmail.com">
+                    lucasfernando.recruiter@gmail.com
+                  </a>
                 </p>
               </div>
 
@@ -34,7 +42,9 @@ export function Contact() {
                 </h3>
 
                 <p className="mt-2">
-                  (21) 98849-0811
+                  <a className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-2" href="https://wa.me/5521988490811">
+                    (21) 98849-0811
+                  </a>
                 </p>
               </div>
 
@@ -50,7 +60,7 @@ export function Contact() {
             </div>
           </div>
 
-          <ContactForm />
+          {recruitment ? <RecruitmentForm /> : <ContactForm key={`${initialSubject}:${initialMessage}`} initialSubject={initialSubject} initialMessage={initialMessage} emailEnabled={emailEnabled()} />}
         </div>
       </Container>
     </section>

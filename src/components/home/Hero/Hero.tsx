@@ -14,7 +14,7 @@ export function Hero() {
 
       <Container>
 
-        <div className="grid min-h-[90vh] items-center gap-20 lg:grid-cols-2">
+        <div className="grid min-h-[90vh] items-center gap-12 py-16 lg:grid-cols-2 lg:gap-20 lg:py-24">
 
           <HeroContent />
 
